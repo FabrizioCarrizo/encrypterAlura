@@ -1,0 +1,140 @@
+body {
+  font-family: "inter";
+
+  background-color: #F3F5FC;
+}
+.logo_container{
+  display: inline-block;
+  width: 8%;
+} 
+.logo {
+  width: 100%;
+  height: auto;
+  /* margin-top: 3vh; */
+  /* position: absolute; */
+  /* margin-left: 2%; */
+}
+.container {
+  display: flex;
+  /* /* flex-direction: row; */
+  flex-wrap: wrap;
+}
+.left_message_container {
+  /* display: flex;  */
+
+  flex: 1;
+  /* width: 50%;
+  height: auto; */
+  color: #0a3871;
+  /* flex-basis: 50%;
+  flex-wrap: wrap;
+  flex-direction: column; */
+  /* border: solid #000; */
+  /* flex-grow: 0;
+  flex-shrink: 1; */
+}
+.warn_container {
+  /* display: flex;
+  flex-direction: row;
+  flex-shrink: 1;
+  flex-basis: 10%; */
+  margin-left: 16%;
+  margin-bottom: -10vh;
+  /* padding-top: 20vh ; */
+}
+.warn_icon {
+  width: 16px;
+  height: 16px;
+  margin: auto;
+  margin-right: 1%;
+}
+input {
+  background: #F3F5FC;
+  font-weight: 400;
+  font-size: 32px;
+  margin-left: 16%;
+  margin-top: 16vh;
+  color: #0a3871;
+  padding-bottom: 40vh;
+  border: none;
+}
+::placeholder {
+  color: #0a3871;
+
+  font-weight: 400;
+
+  opacity: 1;
+}
+.buttons_container{
+  /* margin-top: -10vh; */
+  padding-top: 10%;
+
+}
+.button {
+  padding: 24px;
+  margin-left: 16%;
+  width: 22%;
+  height: 67px;
+  border-radius: 24px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+
+}
+.encrypt {
+  background: #0a3871;
+  color: #ffffff;
+}
+
+.decrypt {
+  background-color: #d8dfe8;
+  color: #0a3871;
+  margin-left: 2%;
+}
+
+.right_message_container {
+  /* width: 50%; */
+  flex: 0.3;
+  margin-top: -8vh;
+  padding:  0;
+  height: 92vh;
+  background: #ffffff;
+  /* shadow */
+
+  box-shadow: 0px 24px 32px -8px rgba(0, 0, 0, 0.08);
+  border-radius: 32px;
+  margin-right: 2%;
+  /* margin-bottom: 70%; */
+
+
+  /* border: solid #000; */
+}
+
+.no_message_container {
+  width: 85%;
+  margin: auto;
+  margin-top: 50%;
+}
+.no_message_title {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 120%;
+  text-align: center;
+  color: #343a40;
+}
+
+.no_message_subtitle {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  text-align: center;
+
+  color: #495057;
+}
+
+.no_message_img {
+  width: 100%;
+  height: auto;
+  margin-left: 10%;
+}

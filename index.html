@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1 class="logo_container"><img src="assets/logo2x.png" class="logo" /></h1>
+
+    <div class="container">
+      <div class="left_message_container">
+        <div>
+          <input type="text" placeholder="Ingrese el texto aqui" />
+        </div>
+        <div class="warn_container">
+          <p>
+          <img class="warn_icon" src="assets/vector.png" />
+
+            Solo letras minusculas y sin acentos</p>
+        </div>
+        <div class="buttons_container">
+          <button class="button encrypt">Encriptar</button>
+          <button class="button decrypt">Desencriptar</button>
+        </div>
+      </div>
+
+      <div class="right_message_container">
+        <div class="no_message_container">
+          <img
+            class="no_message_img"
+            src="assets/no_message_img.svg"
+            alt="No message"
+          />
+          <p class="no_message_title">Ningun mensaje fue encontrado</p>
+          <p class="no_message_subtitle">Ingrese el texto que desees encriptar o desencriptar.</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
