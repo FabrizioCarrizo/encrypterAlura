@@ -19,19 +19,30 @@
 
     <div class="container">
       <div class="left_message_container">
-        <div>
-          <input type="text" placeholder="Ingrese el texto aqui" />
-        </div>
-        <div class="warn_container">
-          <p>
-          <img class="warn_icon" src="assets/vector.png" />
+        <form>
+          <div class="input_container">
+            <textarea
+              id="text_input"
+              class="input"
+              type="textarea"
+              placeholder="Ingrese el texto aquí..."
+            ></textarea>
+          </div>
 
-            Solo letras minusculas y sin acentos</p>
-        </div>
-        <div class="buttons_container">
-          <button class="button encrypt">Encriptar</button>
-          <button class="button decrypt">Desencriptar</button>
-        </div>
+          <div class="buttons_container">
+            <div class="warn_container">
+              <p class="warn_message">
+                <img class="warn_icon" src="assets/vector.png" />
+
+                Solo letras minúsculas y sin acentos
+              </p>
+            </div>
+            <button id="encrypt_btn" class="button encrypt">Encriptar</button>
+            <button id="decrypt_btn" class="button decrypt">
+              Desencriptar
+            </button>
+          </div>
+        </form>
       </div>
 
       <div class="right_message_container">
@@ -42,9 +53,13 @@
             alt="No message"
           />
           <p class="no_message_title">Ningun mensaje fue encontrado</p>
-          <p class="no_message_subtitle">Ingrese el texto que desees encriptar o desencriptar.</p>
+          <p class="no_message_subtitle">
+            Ingrese el texto que desees encriptar o desencriptar.
+          </p>
         </div>
+        <div class="encrypted_message_container"></div>
       </div>
     </div>
+    <script src="script.js"></script>
   </body>
 </html>
