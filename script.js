@@ -15,7 +15,6 @@ encryptButton.addEventListener("click", (e) => {
   word = textInput.value;
   if (validationFunction(word) == true && word != "") {
     let result = encryptFunction(word);
-    console.log(result)
 
     showMsg(result);
 
@@ -39,7 +38,7 @@ decryptButton.addEventListener("click", (e) => {
   e.preventDefault();
   word = textInput.value;
   let result = decryptFunction(word);
-  console.log(result)
+  console.log(result);
   showMsg(result);
   decryptedWord = "";
   textInput.value = "";
@@ -110,54 +109,57 @@ const encryptFunction = (word) => {
 };
 
 const decryptFunction = (word) => {
-  console.log('This is word: ',word);
+  console.log("This is word: ", word);
   console.log(word.length);
   console.log(word.charAt(0));
 
   for (let index = 0; index < word.length; index++) {
     switch (word.charAt(index)) {
-      case "a": if(word.charAt((index+1)==='i')) {decryptedWord = decryptedWord + "a";
-        console.log(decryptedWord)
-      index=index+1; 
-      }
+      case "a":
+        if (word.charAt(index + 1 === "i")) {
+          decryptedWord = decryptedWord + "a";
+          console.log(decryptedWord);
+          index = index + 1;
+        }
         break;
       //   return "a";
-      case "e": if(word.substr(index,5)==='enter')
-        {decryptedWord = decryptedWord + "e";
-        console.log(word.substr(index,5))
-        console.log(decryptedWord);
-      index=index+4; 
-
-      }
+      case "e":
+        if (word.substr(index, 5) === "enter") {
+          decryptedWord = decryptedWord + "e";
+          console.log(word.substr(index, 5));
+          console.log(decryptedWord);
+          index = index + 4;
+        }
         break;
       //   return "e";
-      case "i": if(word.substr(index,4)==='imes')
-        {decryptedWord = decryptedWord + "i";
-        console.log(decryptedWord);
-      index=index+3; 
+      case "i":
+        if (word.substr(index, 4) === "imes") {
+          decryptedWord = decryptedWord + "i";
+          console.log(decryptedWord);
+          index = index + 3;
 
-      break;
-    }
+          break;
+        }
       case "o":
-        if(word.substr(index,4)==='ober')
-        {decryptedWord = decryptedWord + "o";
-        console.log(decryptedWord);
-        console.log(word.substr(index,4))
+        if (word.substr(index, 4) === "ober") {
+          decryptedWord = decryptedWord + "o";
+          console.log(decryptedWord);
+          console.log(word.substr(index, 4));
 
-      index=index+3; 
+          index = index + 3;
 
-      break;
-    }
+          break;
+        }
       case "u":
-        if(word.substr(index,4)==='ufat')
-        {decryptedWord = decryptedWord + "u";
-        console.log(decryptedWord);
-      index=index+3; 
+        if (word.substr(index, 4) === "ufat") {
+          decryptedWord = decryptedWord + "u";
+          console.log(decryptedWord);
+          index = index + 3;
 
-      break;
-    }
+          break;
+        }
       default:
-        console.log(decryptedWord)
+        console.log(decryptedWord);
         decryptedWord = decryptedWord + word.charAt(index);
         break;
       //   return (word.charAt(index)) ;
@@ -172,41 +174,51 @@ const showMsg = (msg) => {
   let aluraLogo = document.querySelector(".logo_container");
   let noMsgContainer = document.querySelector(".no_message_container");
   let leftContainer = document.querySelector(".left_message_container");
-  let rightContainer = document.querySelector(".right_message_container");
+  let noMsgText = document.querySelector(".no_message_text");
   let encryptedMsgContainer = document.querySelector(
     ".encrypted_message_container"
   );
-  let encryptedTxt = document.querySelector(".encrypted_text");
+  let rightContainer = document.querySelector(".right_message_container");
 
-  if (screen.width <= 1024) {
+  noMsgContainer.style.display = "none";
+  rightContainer.style.alignContent='space-between';
+  // ----- Here I use If statement to add some features to small size screens ------
+
+  if (screen.width < 1024) {
     aluraLogo.style = "display:none";
+    noMsgText.style = "display: none";
 
     leftContainer.style = "display: none";
-    encryptedMsgContainer.style.minHeight = "35em";
+    // encryptedMsgContainer.style.minHeight = "35em";
+    encryptedMsgContainer.innerHTML = `<div class='encrypted_text'>${msg}</div>
+      <div class='copy_button_container'><button id="copy_btn" class="button copy">Copiar</button><button id="back_btn" class="button copy " style='background-color:#FFFFFF; color: #0A3871;
+      '>Volver</button></div> `;
+    encryptedMsgContainer.style = "display: inline-block";
+    let backButton = document.getElementById("back_btn");
+
+    //MAKING A BACK BUTTON TO GO BACK TO MAIN SCREEN
+    backButton.addEventListener("click", (e) => {
+      leftContainer.style.display = "flex";
+      encryptedMsgContainer.style.display = "none";
+      noMsgText.style.display = "flex";
+      aluraLogo.style.display = "inline-block";
+    });
   }
 
-  noMsgContainer.style = "display: none";
 
+
+  noMsgText.style = "display: none";
   encryptedMsgContainer.innerHTML = `<div class='encrypted_text'>${msg}</div>
-  <div class='copy_button_container'><button id="copy_btn" class="button copy">Copiar</button><button id="back_btn" class="button copy " style='background-color:#FFFFFF; color: #0A3871;
-  '>Volver</button></div> `;
+  <div class='copy_button_container'><button id="copy_btn" class="button copy">Copiar</button></div> `;
   encryptedMsgContainer.style = "display: inline-block";
-
   let copyButton = document.getElementById("copy_btn");
-  let backButton = document.getElementById("back_btn");
 
+  // ----- Copy button event listener -----
   copyButton.addEventListener("click", (e) => {
     let selection = navigator.clipboard.writeText(msg);
     console.log(selection);
     copyButton.innerHTML = "Mensaje copiado";
     copyButton.style.backgroundColor = "#E5E5E5";
     copyButton.style.color = "#0A3871";
-  });
-
-  //MAKING A BACK BUTTON TO GO BACK TO MAIN SCREEN
-  backButton.addEventListener("click", (e) => {
-    leftContainer.style.display = "flex";
-    encryptedMsgContainer.style.display = "none";
-    noMsgContainer.style.display='inline-block'
   });
 };
