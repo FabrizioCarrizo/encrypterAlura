@@ -113,9 +113,8 @@ const validationFunction = (word) => {
 
   for (let index = 0; index < word.length; index++) {
     if (
-      word.charAt(index) === word.charAt(index).toUpperCase() &&
-      word.charAt(index) != " "
-    ) {
+      (word.charAt(index) === word.charAt(index).toUpperCase() &&
+      (word.charAt(index) != " "))&& (word.charAt(index) != "!")&& (word.charAt(index) != "?")) {
       
       return false;
     } else {

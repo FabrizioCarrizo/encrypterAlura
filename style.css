@@ -106,6 +106,7 @@ form{
   margin: auto;
   text-align: center;
   padding: 1em;
+  min-width: 88%;
   max-width: 100%;
   min-height: 92vh;
   /* max-height: 10vh; */
@@ -351,8 +352,7 @@ form{
     min-height: 80vh;
     max-height: 85vh;
     background: #ffffff;
-    /* shadow */
-  
+   
     box-shadow: 0px 24px 32px -8px rgba(0, 0, 0, 0.08);
     border-radius: 32px;
    
@@ -426,7 +426,7 @@ form{
     overflow-y: scroll;
     word-break: break-word;
   }
-  .encrypted_text::-webkit-scrollbar{
+  ::-webkit-scrollbar{
     display: none;
   }
   
