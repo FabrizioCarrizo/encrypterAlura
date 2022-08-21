@@ -23,14 +23,13 @@ body {
 }
 .left_message_container {
   display: flex;
+  flex-direction: column;
+  flex-basis: auto;
   max-width: 100%;
-  max-height: 10em;
-  padding-bottom: 18vh;
-  /* min-height: 100%; */
   margin: auto;
   margin-bottom: 2em;
-    color: #0a3871;
-    border: solid darkblue;
+  color: #0a3871;
+  border: solid darkblue;
 }
 .input_container{
  min-width: 100%;
@@ -49,8 +48,9 @@ form{
   font-size: 32px;
   margin: auto;
   color: #0a3871;
-   min-width: 95%;
+  min-width: 95%;
   max-width: 100%; 
+  min-height:30vh;
   padding-bottom: 16vh;
   border: solid aqua;
   outline: none;
@@ -68,6 +68,7 @@ form{
 .buttons_container {
   min-width: 100%;
   margin: auto;
+  margin-top: 2em;
   border: #0a3871 solid;
   text-align: center;
 }
@@ -95,39 +96,30 @@ form{
 }
 
 .copy {
-  /* width: 58%; */
   min-width: 100%;
   color: #FFF;
   background-color: #0A3871;
-  
-  /* margin-left: 2%; */
+
 }
 .right_message_container {
-  
-  /* margin: auto; */
+  display: none;
+  margin: auto;
   text-align: center;
-  margin-top: 6em;
-  min-width: 100%;
-   min-height: 10vh;
-   /* padding-bottom: 5em; */
+  padding: 1em;
+  max-width: 100%;
+  min-height: 92vh;
+  /* max-height: 10vh; */
   background: #fff;
   box-shadow: 0px 24px 32px -8px rgba(0, 0, 0, 0.08);
   border-radius: 32px;
   border: solid red;
 }
 
-.no_message_container {
- /* max-height: 20vh;
-
- border: solid violet; */
-  /* padding: 1rem; */
-  /* margin: auto; */
-}
-
 .no_message_text{
   display: flex;
   flex-direction: column;
   border: #000 solid;
+  margin-top: 24em;
   min-width: 100%;
   /* margin: auto; */
   text-align: center;
@@ -156,38 +148,44 @@ form{
   margin-left: 10%;
 }
 
-/* CSS rules to display encrypted message */
+.right_button_container{
+  display: none;
+}
 
 .encrypted_message_container {
   display: none;
+  max-width: 100%;
+  max-height: 50vh;
+  min-height: 60vh;
   text-align: left;
-  min-width: 90%;
-  max-width:80%;
-  margin: auto;
-  min-height: 55vh;
-  max-height: 70vh;
+  flex: 0.5;
   border: solid #000;
   font-style: normal;
   font-weight: 400;
   font-size: 24px;
   line-height: 150%;
+  padding: 1em 0;
+  word-wrap: break-word;
+  overflow-y: scroll;
+  word-break: break-word;
 
   color: #495057;
 }
 .encrypted_text{
-  /* padding-bottom: vh; */
-  min-height: 25vh;
-  max-height: 50vh;
-  border: blue solid;
--ms-overflow-style: none;  
-    scrollbar-width: none;  
- 
+  margin: auto;
+  /* -ms-overflow-style: none;  
+  scrollbar-width: none;   */
+  max-width: 90%;
+  padding: 0;
+  padding-bottom: 30vh;
+  flex-grow: 0;
+  flex-basis: 100%;
   word-wrap: break-word;
   overflow-y: scroll;
   word-break: break-word;
 }
 .encrypted_text::-webkit-scrollbar{
-  display: none;
+  /* display: none; */
 }
 
 .copy_button_container {
@@ -205,7 +203,7 @@ form{
   text-align: left;
   flex: 0.5;
   max-width: 100%;
-  max-height: 82%;
+  margin-bottom: .5em;
   border: solid #000;
   font-style: normal;
   font-weight: 400;
@@ -235,7 +233,7 @@ form{
   display: none;
 }
 
-.copy_button_container {
+.right_button_container {
   border: solid #000;
   width: 100%;
   text-align: center;
@@ -248,6 +246,7 @@ form{
     display: inline-block;
     width:20vw;
   }
+
   .logo {
     width: 100%;
     height: auto;
@@ -258,8 +257,11 @@ form{
     justify-content: space-evenly;
   }
   .left_message_container {
+    
     min-width: 50vw;
-   min-height: 65vh;
+    min-height: 40vh;
+    max-height: 80vh;
+    font-weight: 400;
     color: #0a3871;
     
   }
@@ -277,10 +279,14 @@ form{
     color: #495057;
   }
   form{
+    flex-grow: 0;
+    flex-direction: column;
+    display: flex;
+    max-height: 75vh;
     width: 100%;
   }
   .input_container{
-    max-height: 80vh;
+    max-height: 50vh;
     border: solid black;
   }
   .input {
@@ -288,19 +294,23 @@ form{
     background: #f3f5fc;
     font-weight: 400;
     font-size: 32px;
+    max-height: 40vh;
     /* margin-left: 16%; */
     /* margin-top: 2vh; */
     color: #0a3871;
     width: 70%;
-    height: 50vh;
+    min-height: 15rem;
+    /* max-height: 30vh; */
+    /* max-height: 50vh; */
    
-    /* padding-bottom: 63%; */
+    padding-bottom: 23%;
     border: aqua solid;
     outline: none;
   }
 
   .buttons_container {
    min-width: 100%;
+   padding-top: 5vh;
     border: #0a3871 solid;
   }
   .button {
@@ -311,10 +321,12 @@ form{
     font-size: 16px;
     line-height: 19px;
     text-align: center;
+    border: 1px solid #0A3871;
+    border-radius: 24px;
   }
   .encrypt {
     background: #0a3871;
-    color: #ffffff;
+    color: #FFF;
   }
   
   .decrypt {
@@ -324,7 +336,7 @@ form{
   
   .copy {
     
-    background-color: #d8dfe8;
+    background-color: #FFF;
     color: #0a3871;
   }
   
@@ -336,7 +348,8 @@ form{
     align-content: center;
     margin: 0;
     width: 27vw;
-    min-height: 65vh;
+    min-height: 80vh;
+    max-height: 85vh;
     background: #ffffff;
     /* shadow */
   
@@ -345,14 +358,7 @@ form{
    
   }
   
-  /* .no_message_img{
-    display: inline-block;
-    width: 20%;
-    height: auto;
-    margin: 0;
-    padding: 0;
-    border: #000 solid;
-  } */
+
   .no_message_container {
     display: inline-block;
 
@@ -396,13 +402,13 @@ form{
     width: 100%;
     text-align: left;
     flex: 0.5;
-    max-width: 100%;
     border: solid #000;
     font-style: normal;
     font-weight: 400;
     font-size: 24px;
     line-height: 150%;
     padding: 1em 0;
+    min-height: 50vh;
   
     color: #495057;
   }
@@ -424,11 +430,14 @@ form{
     display: none;
   }
   
-  .copy_button_container {
+  .right_button_container {
     border: solid #000;
     
     /* width: 100%; */
     text-align: center;
+  }
+  #back_btn{
+    display:none;
   }
 }
 

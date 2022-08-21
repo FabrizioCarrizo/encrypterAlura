@@ -3,18 +3,64 @@
 let textInput = document.getElementById("text_input");
 let encryptButton = document.getElementById("encrypt_btn");
 let decryptButton = document.getElementById("decrypt_btn");
+let backButton = document.getElementById("back_btn");
 let warnMsg = document.querySelector(".warn_message");
+let encryptedTxt=document.querySelector('.encrypted_text');
 let word = "",
   encryptedWord = "",
   decryptedWord = "";
+  let aluraLogo = document.querySelector(".logo_container");
+  let noMsgContainer = document.querySelector(".no_message_container");
+  let leftContainer = document.querySelector(".left_message_container");
+  let noMsgText = document.querySelector(".no_message_text");
+  let encryptedMsgContainer = document.querySelector(
+    ".encrypted_message_container"
+  );
+  let rightContainer = document.querySelector(".right_message_container");
+  let rightBtnContainer= document.querySelector('.right_button_container');
+  
+  
+ 
+  backButton.addEventListener("click", (e) => {
+    e.preventDefault()
+    leftContainer.style.display = "flex";
+    rightContainer.style.display='none';
+    encryptedMsgContainer.style.display = "none";
+    noMsgText.style.display = "flex";
+    aluraLogo.style.display = "inline-block";
+    defaultCopyBtn();
+    rightBtnContainer.style.display='none';
+    
 
-//-----Encrypt and Decrypt buttons -----
+  });
+
+ 
+
+//-----Encrypt and Decrypt buttons event listeners -----
+let copyButton = document.getElementById("copy_btn");
+
+
+
+const defaultCopyBtn=()=>{
+  // copyButton.style.backgroundColor='#0a3871';
+  // copyButton.style.color='#FFF';
+
+  copyButton.innerHTML = "Copiar";
+  // copyButton.className+='copy'
+}
 
 encryptButton.addEventListener("click", (e) => {
   e.preventDefault();
+ 
+
+  defaultCopyBtn();
   word = textInput.value;
-  if (validationFunction(word) == true && word != "") {
+  if (validationFunction(word) === true && word != "") {
     let result = encryptFunction(word);
+    if(window.currentWidth<1024){
+      console.log(window.currentWidth)
+    }
+
 
     showMsg(result);
 
@@ -36,11 +82,27 @@ encryptButton.addEventListener("click", (e) => {
 
 decryptButton.addEventListener("click", (e) => {
   e.preventDefault();
+  defaultCopyBtn();
+
   word = textInput.value;
-  let result = decryptFunction(word);
-  console.log(result);
-  showMsg(result);
-  decryptedWord = "";
+  if (validationFunction(word) === true && word != "") {
+    let result = decryptFunction(word);
+    console.log(result)
+    showMsg(result);
+    word='';
+    decryptedWord = "";
+    warnMsg.innerHTML =
+      '<p class="warn_message"><img class="warn_icon" src="assets/vector.png"> Solo letras minúsculas y sin acentos<p>';
+    warnMsg.style.color = "#495057";
+  } else if (word === "") {
+    warnMsg.innerHTML = "No puedes desencriptar un texto vacío";
+    warnMsg.style.color = "#f00";
+  } else {
+    warnMsg.innerHTML =
+      "El texto no es válido. Recuerda no usar mayúsculas o acentos";
+    warnMsg.style.color = "#f00";
+  }
+ 
   textInput.value = "";
 });
 
@@ -54,15 +116,15 @@ const validationFunction = (word) => {
       word.charAt(index) === word.charAt(index).toUpperCase() &&
       word.charAt(index) != " "
     ) {
-      console.log("PERO TE DIJE QUE MAYUSCULAS NO PELOTUDO");
+      
       return false;
     } else {
       for (let i = 0; i < accentedVowels.length; i++) {
-        console.log(accentedVowels[i]);
+       
 
         if (word.charAt(index) == accentedVowels[i]) {
-          console.log("QUE DIJIMOS DE ACENTOSSS");
-          console.log(accentedVowels[i]);
+        
+         
           i = 0;
           return false;
         }
@@ -171,47 +233,34 @@ const decryptFunction = (word) => {
 //----- Function that display encrypted or decrypted message -----
 
 const showMsg = (msg) => {
-  let aluraLogo = document.querySelector(".logo_container");
-  let noMsgContainer = document.querySelector(".no_message_container");
-  let leftContainer = document.querySelector(".left_message_container");
-  let noMsgText = document.querySelector(".no_message_text");
-  let encryptedMsgContainer = document.querySelector(
-    ".encrypted_message_container"
-  );
-  let rightContainer = document.querySelector(".right_message_container");
+  
 
   noMsgContainer.style.display = "none";
+  rightContainer.style.display='grid';
   rightContainer.style.alignContent='space-between';
   // ----- Here I use If statement to add some features to small size screens ------
-
-  if (screen.width < 1024) {
+    
+  if (window.innerWidth<1024) {
+   
     aluraLogo.style = "display:none";
     noMsgText.style = "display: none";
 
-    leftContainer.style = "display: none";
-    // encryptedMsgContainer.style.minHeight = "35em";
-    encryptedMsgContainer.innerHTML = `<div class='encrypted_text'>${msg}</div>
-      <div class='copy_button_container'><button id="copy_btn" class="button copy">Copiar</button><button id="back_btn" class="button copy " style='background-color:#FFFFFF; color: #0A3871;
-      '>Volver</button></div> `;
+    leftContainer.style.display='none';
+    
+    encryptedMsgContainer.innerHTML = msg;
     encryptedMsgContainer.style = "display: inline-block";
-    let backButton = document.getElementById("back_btn");
-
+    rightBtnContainer.style.display='inline-block';
+   backButton.style.display='inline-block';
     //MAKING A BACK BUTTON TO GO BACK TO MAIN SCREEN
-    backButton.addEventListener("click", (e) => {
-      leftContainer.style.display = "flex";
-      encryptedMsgContainer.style.display = "none";
-      noMsgText.style.display = "flex";
-      aluraLogo.style.display = "inline-block";
-    });
+   
+   
   }
 
-
-
   noMsgText.style = "display: none";
-  encryptedMsgContainer.innerHTML = `<div class='encrypted_text'>${msg}</div>
-  <div class='copy_button_container'><button id="copy_btn" class="button copy">Copiar</button></div> `;
+  encryptedMsgContainer.innerHTML = msg;
+  rightBtnContainer.style.display='inline-block';
   encryptedMsgContainer.style = "display: inline-block";
-  let copyButton = document.getElementById("copy_btn");
+  
 
   // ----- Copy button event listener -----
   copyButton.addEventListener("click", (e) => {
@@ -221,4 +270,5 @@ const showMsg = (msg) => {
     copyButton.style.backgroundColor = "#E5E5E5";
     copyButton.style.color = "#0A3871";
   });
+  
 };
