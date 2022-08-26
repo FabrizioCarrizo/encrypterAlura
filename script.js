@@ -5,30 +5,38 @@ let encryptButton = document.getElementById("encrypt_btn");
 let decryptButton = document.getElementById("decrypt_btn");
 let backButton = document.getElementById("back_btn");
 let warnMsg = document.querySelector(".warn_message");
-let encryptedTxt=document.querySelector('.encrypted_text');
+let themeToggle= document.querySelector('.theme_toggle');
 let word = "",
   encryptedWord = "",
   decryptedWord = "";
-  let aluraLogo = document.querySelector(".logo_container");
-  let noMsgContainer = document.querySelector(".no_message_container");
-  let leftContainer = document.querySelector(".left_message_container");
-  let noMsgText = document.querySelector(".no_message_text");
-  let encryptedMsgContainer = document.querySelector(
+let header = document.getElementById("header");
+let noMsgContainer = document.querySelector(".no_message_container");
+let leftContainer = document.querySelector(".left_message_container");
+let noMsgText = document.querySelector(".no_message_text");
+let encryptedMsgContainer = document.querySelector(
     ".encrypted_message_container"
   );
-  let rightContainer = document.querySelector(".right_message_container");
-  let rightBtnContainer= document.querySelector('.right_button_container');
+let rightContainer = document.querySelector(".right_message_container");
+let rightBtnContainer= document.querySelector('.right_button_container');
+
+let noMsgTitle= document.querySelector('.no_message_title');
+let noMsgSubtitle= document.querySelector('.no_message_subtitle');
+
   
   
  
   backButton.addEventListener("click", (e) => {
     e.preventDefault()
-    leftContainer.style.display = "flex";
-    rightContainer.style.display='none';
+    
+    leftContainer.classList.remove('show_message_left_container');
+    
+    
+    rightContainer.classList.remove('show_message_right_container');
+
     encryptedMsgContainer.style.display = "none";
     noMsgText.style.display = "flex";
-    aluraLogo.style.display = "inline-block";
-    defaultCopyBtn();
+    header.style.display = "grid";
+    
     rightBtnContainer.style.display='none';
     
 
@@ -42,11 +50,14 @@ let copyButton = document.getElementById("copy_btn");
 
 
 const defaultCopyBtn=()=>{
-  // copyButton.style.backgroundColor='#0a3871';
-  // copyButton.style.color='#FFF';
-
+ 
   copyButton.innerHTML = "Copiar";
-  // copyButton.className+='copy'
+  copyButton.classList.remove('copy_selected');
+  copyButton.classList.add('copy');
+
+  
+
+ 
 }
 
 encryptButton.addEventListener("click", (e) => {
@@ -57,9 +68,7 @@ encryptButton.addEventListener("click", (e) => {
   word = textInput.value;
   if (validationFunction(word) === true && word != "") {
     let result = encryptFunction(word);
-    if(window.currentWidth<1024){
-      console.log(window.currentWidth)
-    }
+   
 
 
     showMsg(result);
@@ -220,7 +229,7 @@ const decryptFunction = (word) => {
           break;
         }
       default:
-        console.log(decryptedWord);
+        
         decryptedWord = decryptedWord + word.charAt(index);
         break;
       //   return (word.charAt(index)) ;
@@ -229,45 +238,132 @@ const decryptFunction = (word) => {
   return decryptedWord;
 };
 
-//----- Function that display encrypted or decrypted message -----
 
-const showMsg = (msg) => {
+const mobileMsgContainer=()=>{
+  // if(window.innerWidth<1024){
+  //   header.style = "display:none";
+  //   // noMsgText.style = "display: none";
+
+  //   leftContainer.style.display='none';
+  //   // header.classList.add('hide-element');
+  //   // noMsgText.classList.add('hide-element');
+
+  //   leftContainer.classList.add('hide-element');
+  //   leftContainer.classList.remove('hide-element');
+
+    
+  //   encryptedMsgContainer.style = "display: inline-block";
+  //   rightBtnContainer.style.display='inline-block';
+  //   backButton.style.display='inline-block';
+
+    
+  // }
+
+  if(encryptedMsgContainer.style.display!='null'){
+    header.classList.add('show_message_header');
+    leftContainer.classList.add('show_message_left_container');
+    rightContainer.classList.add('show_message_right_container');
+    backButton.classList.add('show_back_button')
+
+    console.log('SHOWING MESSAGE')
+  } else return;
+  
+    
+  // window.addEventListener('resize',(e)=>{
+  //   console.log('resize')
+   
+  //     if(encryptedMsgContainer.style.display!='none' && window.innerWidth<1024){
+  //       noMsgContainer.style.display='none';
+  //       leftContainer.style.display='none';
+  //       header.style = "display:none";
+  //       backButton.style.display="inline-block";
+  //       } else if(encryptedMsgContainer.style.display==='none' && window.innerWidth>1024) {
+          
+  //         leftContainer.style.display='flex';
+  //         noMsgContainer.style.display="inline-block";
+  //         header.style = "display:grid";
+  //         backButton.style.display="none";
+     
+  //     } 
+      // if(encryptedMsgContainer.style.display!='none' && window.innerWidth>1024){
+        
+      //   rightContainer.style.alignContent='space-between';
+
+      // } else if(window.innerWidth<1024){
+      //   noMsgContainer.style.display="none";
+
+      // }
+    }
+  
+  
   
 
-  noMsgContainer.style.display = "none";
-  rightContainer.style.display='grid';
-  rightContainer.style.alignContent='space-between';
-  // ----- Here I use If statement to add some features to small size screens ------
-    
-  if (window.innerWidth<1024) {
-   
-    aluraLogo.style = "display:none";
-    noMsgText.style = "display: none";
 
-    leftContainer.style.display='none';
+  //----- Function that display encrypted or decrypted message -----
+
+  const showMsg = (msg) => {
+  
+  
+  // noMsgContainer.style.display = "none";
+  noMsgContainer.classList.add('hidden_no_message_img')
+  encryptedMsgContainer.innerHTML = msg;
+
+  mobileMsgContainer();
+
+  // -----  Use If statement to add some features to small size screens ------
     
-    encryptedMsgContainer.innerHTML = msg;
-    encryptedMsgContainer.style = "display: inline-block";
-    rightBtnContainer.style.display='inline-block';
-   backButton.style.display='inline-block';
-    //MAKING A BACK BUTTON TO GO BACK TO MAIN SCREEN
-   
-   
-  }
 
   noMsgText.style = "display: none";
   encryptedMsgContainer.innerHTML = msg;
+  
   rightBtnContainer.style.display='inline-block';
   encryptedMsgContainer.style = "display: inline-block";
   
 
   // ----- Copy button event listener -----
-  copyButton.addEventListener("click", (e) => {
+ copyButton.addEventListener("click", (e) => {
     let selection = navigator.clipboard.writeText(msg);
     console.log(selection);
     copyButton.innerHTML = "Mensaje copiado";
-    copyButton.style.backgroundColor = "#E5E5E5";
-    copyButton.style.color = "#0A3871";
+    copyButton.classList.remove('copy');
+    copyButton.classList.add('copy_selected');
   });
   
 };
+
+  // ----- Dark Theme toggle functions -----
+
+const toggleDarkTheme=()=>{
+
+  console.log(themeToggle.classList)
+  themeToggle.classList.toggle('dark-border');
+
+  if(themeToggle.classList.value==='theme_toggle dark-border'){
+    themeToggle.innerHTML='<img src="assets/theme.svg"><p>Tema oscuro</p>';
+    
+  
+  } else {
+      themeToggle.innerHTML='<img src="assets/theme.svg"><p>Tema claro</p>'
+    }
+  
+  document.body.classList.toggle('dark-container');
+
+    leftContainer.classList.toggle('dark-container');
+    textInput.classList.toggle('dark-container');
+    rightContainer.classList.toggle('dark-border');
+    // decryptButton.classList.toggle('medium-emphasis');
+
+    decryptButton.classList.toggle('dark-border');
+    noMsgTitle.classList.toggle('high-emphasis');
+    encryptedMsgContainer.classList.toggle('high-emphasis')
+    copyButton.classList.toggle('dark-border');
+    backButton.classList.toggle('dark-border');
+    backButton.classList.toggle('medium-emphasis');
+
+}
+
+themeToggle.addEventListener('click',(e)=>{
+
+  toggleDarkTheme();
+
+})
