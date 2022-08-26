@@ -2,41 +2,37 @@ body {
   font-family: "inter";
   background-color: #f3f5fc;
   transition: 0.2s all;
-  
-
 }
-header{
+header {
   display: grid;
   grid-template-columns: 80% 20%;
   margin-bottom: 2em;
   max-height: 10vh;
   transition: 0.2s all;
-
-
 }
-.show_message_header{
+.show_message_header {
   display: none;
 }
-.theme_toggle{
+.theme_toggle {
   cursor: pointer;
   display: inline-block;
   text-align: center;
   min-width: 10em;
-  max-width:10em ;
+  max-width: 10em;
   max-height: 10em;
-  font-size: small ;
+  font-size: small;
   margin: auto;
-background-color: #f3f5fc;
-/* border-bottom:#0a3871 1px solid; */
+  background-color: #f3f5fc;
+  /* border-bottom:#0a3871 1px solid; */
   border-radius: 16px;
   /* trying some fancy things like button effect */
   box-shadow: 2px 2px 6px 1px rgba(0, 0, 0, 0.24);
   transform: scale(0.98);
 }
-.theme_toggle>img{
+.theme_toggle > img {
   margin-top: 5px;
 }
-.theme_toggle>p{
+.theme_toggle > p {
   opacity: 60%;
 }
 
@@ -55,7 +51,6 @@ background-color: #f3f5fc;
   min-width: 100%;
   margin: auto;
   align-content: center;
-
 }
 .left_message_container {
   display: flex;
@@ -69,7 +64,7 @@ background-color: #f3f5fc;
   color: #0a3871;
   border-radius: 24px;
 }
-.show_message_left_container{
+.show_message_left_container {
   display: none;
 }
 
@@ -83,7 +78,6 @@ form {
   /* margin-bottom: 72vh; */
   text-align: center;
   border-radius: 24px;
-
 }
 .input {
   resize: none;
@@ -115,7 +109,7 @@ form {
 
 .buttons_container {
   min-width: 100%;
-  margin: auto; 
+  margin: auto;
 }
 .button {
   cursor: pointer;
@@ -145,14 +139,14 @@ form {
   color: #fff;
   background-color: #0a3871;
 }
-.back{
+.back {
   max-width: 70%;
-  background-color: #ffffff; 
+  background-color: #ffffff;
   color: #0a3871;
 }
 .right_message_container {
   display: none;
-  margin: auto .5em;
+  margin: auto 0.5em;
   text-align: center;
   padding: 2em;
   min-width: 90%;
@@ -164,7 +158,7 @@ form {
   /* border: solid red; */
 }
 
-.show_message_right_container{
+.show_message_right_container {
   display: grid;
   align-content: space-between;
 }
@@ -194,8 +188,6 @@ form {
 
   color: #495057;
 }
-
-
 
 .right_button_container {
   display: none;
@@ -284,19 +276,18 @@ form {
   width: 100%;
   text-align: center;
 }
-.show_back_button{
+.show_back_button {
   display: inline-block;
 }
 
 @media (min-width: 1024px) {
-
-  header{
+  header {
     display: grid;
     grid-template-columns: 80% 20%;
-    margin-bottom: .5em;
+    margin-bottom: 0.5em;
     max-height: 15vh;
   }
-  .show_message_header{
+  .show_message_header {
     display: grid;
   }
   .logo_container {
@@ -308,11 +299,11 @@ form {
     height: auto;
   }
 
-  .theme_toggle{
+  .theme_toggle {
     min-width: 10em;
-    max-width:10em ;
+    max-width: 10em;
     max-height: 10em;
-    font-size: small ;
+    font-size: small;
     margin: auto;
     background: #fff;
     box-shadow: 0px 24px 32px -8px rgba(0, 0, 0, 0.08);
@@ -335,7 +326,7 @@ form {
     font-weight: 400;
     color: #0a3871;
   }
-  .show_message_left_container{
+  .show_message_left_container {
     display: flex;
   }
   .warn_container {
@@ -370,7 +361,7 @@ form {
     color: #0a3871;
     width: 70%;
     min-height: 15rem;
-    text-align: center;
+    text-align: left;
     padding-bottom: 23%;
     outline: none;
   }
@@ -408,7 +399,6 @@ form {
   }
 
   .right_message_container {
-   
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: 35% auto;
@@ -422,9 +412,9 @@ form {
     box-shadow: 0px 24px 32px -8px rgba(0, 0, 0, 0.08);
     border-radius: 32px;
   }
-.show_message_right_container{
-  align-content: space-between;
-}
+  .show_message_right_container {
+    align-content: space-between;
+  }
   .no_message_container {
     display: inline-block;
 
@@ -456,10 +446,9 @@ form {
   .no_message_img {
     max-width: 100%;
     height: auto;
-  
   }
 
-  .hidden_no_message_img{
+  .hidden_no_message_img {
     display: none;
   }
 
@@ -490,8 +479,8 @@ form {
     flex-basis: 100%;
   }
 
-.right_button_container {
-  margin: auto;
+  .right_button_container {
+    margin: auto;
     text-align: center;
   }
   #back_btn {
@@ -499,36 +488,30 @@ form {
   }
 }
 
-.copy_selected{
+.copy_selected {
   max-width: 70%;
   background-color: #d8dfe8;
-  color: #0A3871;
-
+  color: #0a3871;
 }
 
-.dark-container{
-background-color: #0e1117;
+.dark-container {
+  background-color: #0e1117;
 }
-.dark-border{
+.dark-border {
   background-color: #0e1117;
   border: #0a3871 solid 1px;
   color: #fff;
-
 }
-.high-emphasis{
+.high-emphasis {
   opacity: 87%;
   color: #fff;
-
-
 }
 
-.medium-emphasis{
+.medium-emphasis {
   opacity: 60%;
   color: #fff;
-
-
 }
 
-.hide-element{
+.hide-element {
   display: none;
 }

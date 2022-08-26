@@ -1,11 +1,12 @@
 //-----DOM element to variables -----
 
 let textInput = document.getElementById("text_input");
+let copyButton = document.getElementById("copy_btn");
 let encryptButton = document.getElementById("encrypt_btn");
 let decryptButton = document.getElementById("decrypt_btn");
 let backButton = document.getElementById("back_btn");
 let warnMsg = document.querySelector(".warn_message");
-let themeToggle= document.querySelector('.theme_toggle');
+let themeToggle = document.querySelector(".theme_toggle");
 let word = "",
   encryptedWord = "",
   decryptedWord = "";
@@ -14,62 +15,36 @@ let noMsgContainer = document.querySelector(".no_message_container");
 let leftContainer = document.querySelector(".left_message_container");
 let noMsgText = document.querySelector(".no_message_text");
 let encryptedMsgContainer = document.querySelector(
-    ".encrypted_message_container"
-  );
+  ".encrypted_message_container"
+);
 let rightContainer = document.querySelector(".right_message_container");
-let rightBtnContainer= document.querySelector('.right_button_container');
+let rightBtnContainer = document.querySelector(".right_button_container");
+let noMsgTitle = document.querySelector(".no_message_title");
+let noMsgSubtitle = document.querySelector(".no_message_subtitle");
 
-let noMsgTitle= document.querySelector('.no_message_title');
-let noMsgSubtitle= document.querySelector('.no_message_subtitle');
+backButton.addEventListener("click", (e) => {
+  e.preventDefault();
 
-  
-  
- 
-  backButton.addEventListener("click", (e) => {
-    e.preventDefault()
-    
-    leftContainer.classList.remove('show_message_left_container');
-    
-    
-    rightContainer.classList.remove('show_message_right_container');
+  leftContainer.classList.remove("show_message_left_container");
 
-    encryptedMsgContainer.style.display = "none";
-    noMsgText.style.display = "flex";
-    header.style.display = "grid";
-    
-    rightBtnContainer.style.display='none';
-    
+  rightContainer.classList.remove("show_message_right_container");
 
-  });
-
- 
+  encryptedMsgContainer.style.display = "none";
+  noMsgText.style.display = "flex";
+  header.style.display = "grid";
+  noMsgContainer.classList.remove("hidden_no_message_img");
+  rightBtnContainer.style.display = "none";
+});
 
 //-----Encrypt and Decrypt buttons event listeners -----
-let copyButton = document.getElementById("copy_btn");
-
-
-
-const defaultCopyBtn=()=>{
- 
-  copyButton.innerHTML = "Copiar";
-  copyButton.classList.remove('copy_selected');
-  copyButton.classList.add('copy');
-
-  
-
- 
-}
 
 encryptButton.addEventListener("click", (e) => {
   e.preventDefault();
- 
 
   defaultCopyBtn();
   word = textInput.value;
   if (validationFunction(word) === true && word != "") {
     let result = encryptFunction(word);
-   
-
 
     showMsg(result);
 
@@ -96,9 +71,8 @@ decryptButton.addEventListener("click", (e) => {
   word = textInput.value;
   if (validationFunction(word) === true && word != "") {
     let result = decryptFunction(word);
-    console.log(result)
     showMsg(result);
-    word='';
+    word = "";
     decryptedWord = "";
     warnMsg.innerHTML =
       '<p class="warn_message"><img class="warn_icon" src="assets/vector.png"> Solo letras minúsculas y sin acentos<p>';
@@ -111,9 +85,15 @@ decryptButton.addEventListener("click", (e) => {
       "El texto no es válido. Recuerda no usar mayúsculas o acentos";
     warnMsg.style.color = "#f00";
   }
- 
+
   textInput.value = "";
 });
+
+const defaultCopyBtn = () => {
+  copyButton.innerHTML = "Copiar";
+  copyButton.classList.remove("copy_selected");
+  copyButton.classList.add("copy");
+};
 
 // ----- Validation Function -----
 
@@ -122,17 +102,15 @@ const validationFunction = (word) => {
 
   for (let index = 0; index < word.length; index++) {
     if (
-      (word.charAt(index) === word.charAt(index).toUpperCase() &&
-      (word.charAt(index) != " "))&& (word.charAt(index) != "!")&& (word.charAt(index) != "?")) {
-      
+      word.charAt(index) === word.charAt(index).toUpperCase() &&
+      word.charAt(index) != " " &&
+      word.charAt(index) != "!" &&
+      word.charAt(index) != "?"
+    ) {
       return false;
     } else {
       for (let i = 0; i < accentedVowels.length; i++) {
-       
-
         if (word.charAt(index) == accentedVowels[i]) {
-        
-         
           i = 0;
           return false;
         }
@@ -179,16 +157,11 @@ const encryptFunction = (word) => {
 };
 
 const decryptFunction = (word) => {
-  console.log("This is word: ", word);
-  console.log(word.length);
-  console.log(word.charAt(0));
-
   for (let index = 0; index < word.length; index++) {
     switch (word.charAt(index)) {
       case "a":
         if (word.charAt(index + 1 === "i")) {
           decryptedWord = decryptedWord + "a";
-          console.log(decryptedWord);
           index = index + 1;
         }
         break;
@@ -196,8 +169,6 @@ const decryptFunction = (word) => {
       case "e":
         if (word.substr(index, 5) === "enter") {
           decryptedWord = decryptedWord + "e";
-          console.log(word.substr(index, 5));
-          console.log(decryptedWord);
           index = index + 4;
         }
         break;
@@ -205,7 +176,6 @@ const decryptFunction = (word) => {
       case "i":
         if (word.substr(index, 4) === "imes") {
           decryptedWord = decryptedWord + "i";
-          console.log(decryptedWord);
           index = index + 3;
 
           break;
@@ -213,23 +183,17 @@ const decryptFunction = (word) => {
       case "o":
         if (word.substr(index, 4) === "ober") {
           decryptedWord = decryptedWord + "o";
-          console.log(decryptedWord);
-          console.log(word.substr(index, 4));
-
           index = index + 3;
-
           break;
         }
       case "u":
         if (word.substr(index, 4) === "ufat") {
           decryptedWord = decryptedWord + "u";
-          console.log(decryptedWord);
           index = index + 3;
 
           break;
         }
       default:
-        
         decryptedWord = decryptedWord + word.charAt(index);
         break;
       //   return (word.charAt(index)) ;
@@ -238,132 +202,79 @@ const decryptFunction = (word) => {
   return decryptedWord;
 };
 
+//----- Function that display mobile or desktop layout -----
 
-const mobileMsgContainer=()=>{
-  // if(window.innerWidth<1024){
-  //   header.style = "display:none";
-  //   // noMsgText.style = "display: none";
+const mobileMsgContainer = () => {
+  if (encryptedMsgContainer.style.display != "null") {
+    header.classList.add("show_message_header");
+    leftContainer.classList.add("show_message_left_container");
+    rightContainer.classList.add("show_message_right_container");
+    backButton.classList.add("show_back_button");
+  }
+};
 
-  //   leftContainer.style.display='none';
-  //   // header.classList.add('hide-element');
-  //   // noMsgText.classList.add('hide-element');
+//----- Function that display encrypted or decrypted message -----
 
-  //   leftContainer.classList.add('hide-element');
-  //   leftContainer.classList.remove('hide-element');
-
-    
-  //   encryptedMsgContainer.style = "display: inline-block";
-  //   rightBtnContainer.style.display='inline-block';
-  //   backButton.style.display='inline-block';
-
-    
-  // }
-
-  if(encryptedMsgContainer.style.display!='null'){
-    header.classList.add('show_message_header');
-    leftContainer.classList.add('show_message_left_container');
-    rightContainer.classList.add('show_message_right_container');
-    backButton.classList.add('show_back_button')
-
-    console.log('SHOWING MESSAGE')
-  } else return;
-  
-    
-  // window.addEventListener('resize',(e)=>{
-  //   console.log('resize')
-   
-  //     if(encryptedMsgContainer.style.display!='none' && window.innerWidth<1024){
-  //       noMsgContainer.style.display='none';
-  //       leftContainer.style.display='none';
-  //       header.style = "display:none";
-  //       backButton.style.display="inline-block";
-  //       } else if(encryptedMsgContainer.style.display==='none' && window.innerWidth>1024) {
-          
-  //         leftContainer.style.display='flex';
-  //         noMsgContainer.style.display="inline-block";
-  //         header.style = "display:grid";
-  //         backButton.style.display="none";
-     
-  //     } 
-      // if(encryptedMsgContainer.style.display!='none' && window.innerWidth>1024){
-        
-      //   rightContainer.style.alignContent='space-between';
-
-      // } else if(window.innerWidth<1024){
-      //   noMsgContainer.style.display="none";
-
-      // }
-    }
-  
-  
-  
-
-
-  //----- Function that display encrypted or decrypted message -----
-
-  const showMsg = (msg) => {
-  
-  
-  // noMsgContainer.style.display = "none";
-  noMsgContainer.classList.add('hidden_no_message_img')
+const showMsg = (msg) => {
+  noMsgContainer.classList.add("hidden_no_message_img");
   encryptedMsgContainer.innerHTML = msg;
 
   mobileMsgContainer();
 
-  // -----  Use If statement to add some features to small size screens ------
-    
-
   noMsgText.style = "display: none";
   encryptedMsgContainer.innerHTML = msg;
-  
-  rightBtnContainer.style.display='inline-block';
+
+  rightBtnContainer.style.display = "inline-block";
   encryptedMsgContainer.style = "display: inline-block";
-  
 
   // ----- Copy button event listener -----
- copyButton.addEventListener("click", (e) => {
-    let selection = navigator.clipboard.writeText(msg);
-    console.log(selection);
-    copyButton.innerHTML = "Mensaje copiado";
-    copyButton.classList.remove('copy');
-    copyButton.classList.add('copy_selected');
-  });
   
+  copyButton.addEventListener("click", (e) => {
+    navigator.clipboard.writeText(msg);
+    copyButton.innerHTML = "Mensaje copiado";
+    copyButton.classList.remove("copy");
+    copyButton.classList.add("copy_selected");
+  });
 };
 
-  // ----- Dark Theme toggle functions -----
+// ----- Dark Theme toggle functions -----
 
-const toggleDarkTheme=()=>{
+const toggleDarkTheme = (darkTheme) => {
+  themeToggle.classList.toggle("dark-border");
+  if (darkTheme) {
+    themeToggle.classList.value === "theme_toggle dark-border";
+  }
 
-  console.log(themeToggle.classList)
-  themeToggle.classList.toggle('dark-border');
-
-  if(themeToggle.classList.value==='theme_toggle dark-border'){
-    themeToggle.innerHTML='<img src="assets/theme.svg"><p>Tema oscuro</p>';
-    
-  
+  if (themeToggle.classList.value === "theme_toggle dark-border") {
+    themeToggle.innerHTML = '<img src="assets/theme.svg"><p>Tema oscuro</p>';
+    localStorage.setItem("theme", "dark");
   } else {
-      themeToggle.innerHTML='<img src="assets/theme.svg"><p>Tema claro</p>'
-    }
-  
-  document.body.classList.toggle('dark-container');
+    themeToggle.innerHTML = '<img src="assets/theme.svg"><p>Tema claro</p>';
+    localStorage.removeItem("theme");
+  }
 
-    leftContainer.classList.toggle('dark-container');
-    textInput.classList.toggle('dark-container');
-    rightContainer.classList.toggle('dark-border');
-    // decryptButton.classList.toggle('medium-emphasis');
+  document.body.classList.toggle("dark-container");
 
-    decryptButton.classList.toggle('dark-border');
-    noMsgTitle.classList.toggle('high-emphasis');
-    encryptedMsgContainer.classList.toggle('high-emphasis')
-    copyButton.classList.toggle('dark-border');
-    backButton.classList.toggle('dark-border');
-    backButton.classList.toggle('medium-emphasis');
+  leftContainer.classList.toggle("dark-container");
+  textInput.classList.toggle("dark-container");
+  rightContainer.classList.toggle("dark-border");
 
-}
+  decryptButton.classList.toggle("dark-border");
+  noMsgTitle.classList.toggle("high-emphasis");
+  encryptedMsgContainer.classList.toggle("high-emphasis");
+  copyButton.classList.toggle("dark-border");
+  backButton.classList.toggle("dark-border");
+  backButton.classList.toggle("medium-emphasis");
+};
 
-themeToggle.addEventListener('click',(e)=>{
-
+themeToggle.addEventListener("click", (e) => {
   toggleDarkTheme();
+});
 
-})
+// -----Check if dark theme is on -----
+
+window.addEventListener("load", (e) => {
+  if (localStorage.getItem("theme") === "dark") {
+    toggleDarkTheme(true);
+  }
+});
